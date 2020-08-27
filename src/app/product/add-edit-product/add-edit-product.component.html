@@ -1,0 +1,133 @@
+ <!-- Breadcrumbs-->
+ <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a [routerLink]="'/dashboard'">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active"> {{title}} </li>
+</ol>
+
+<div class="container">
+  <div class="card card-login mx-auto mt-5">
+    <div class="card-header">{{title}}</div>
+    <div class="card-body">
+      <form #addEditProductForm="ngForm">
+        <div class="form-group">
+          <label for="productTitle">Product Title
+            <span class="spn_required"> *</span>
+          </label>
+          <input type="text" id="productTitle" name="productTitle" placeholder="Enter your product title" #productTitle="ngModel" class="form-control"
+            [(ngModel)]="productModel.ProductTitle" required  maxlength="50"/>
+          <div class="validation-error" *ngIf="productTitle.invalid && (productTitle.dirty || productTitle.touched)">
+            <div *ngIf="productTitle.hasError('required')" >
+              Product Title is required
+            </div>
+            <span *ngIf="description.hasError('maxlength')" >
+                Product Title is no more than 50 characters long.
+              </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Description">Description</label>
+          <input type="text" id="Description" name="Description" aria-describedby="emailHelp" placeholder="Enter product description"
+            #description="ngModel" class="form-control" [(ngModel)]="productModel.Description" minlength="150" required/>
+          <div class="validation-error" *ngIf="description.invalid && (description.dirty || description.touched)">
+            <div *ngIf="description.hasError('required')" >
+              Product Description is required
+            </div>
+            <div *ngIf="description.hasError('minlength')" >
+                Product Description  must be at least 150 characters long.
+              </div>
+          </div>
+        </div>
+
+
+         <!-- <label for="site"><b>Site URL</b></label>
+    <input type="url" placeholder="Enter site URL" name="site" pattern="https?://.+" [(ngModel)] ="model.site" #site="ngModel" [ngClass]="{ 'is-invalid': f.submitted && site.invalid }"  required url>
+    <div *ngIf="f.submitted && site.invalid" class="invalid-text">
+      <div *ngIf="site.errors.required">Site is required</div>
+      <div *ngIf="site.errors.pattern">Must be a valid site URL</div>
+    </div> -->
+
+        <!-- <div class="form-group">
+          <label for="image">Image</label>
+          <input #imageInput type="file" id="image" accept="image/*" (change)="processFile(imageInput)">
+        </div> 
+      pattern="https?://.+"-->
+
+        <div class="form-group">
+            <label for="price">Image Url</label>
+            <input type="url" 
+              placeholder="Enter Image URL" name="imageUrl" class="form-control"
+              pattern="https?://.+"
+
+               [(ngModel)] ="productModel.ImageUrl" #imageUrl="ngModel" 
+              required url>
+            <div class="validation-error" *ngIf="imageUrl.invalid && (imageUrl.dirty || imageUrl.touched)">
+              <div *ngIf="imageUrl.hasError('required')">
+                Product Image is required
+              </div>
+              <div *ngIf="imageUrl.hasError('pattern')">
+                  Enter Valid Product image URL
+                </div>
+            </div>
+          </div>
+
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" id="price" name="price"  placeholder="Enter product price"
+              #price="ngModel" class="form-control" [(ngModel)]="productModel.Price" />
+            <div class="validation-error" *ngIf="price.invalid && (price.dirty || price.touched)">
+              <div *ngIf="price.hasError('required')">
+                Product Price is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="price">Rating</label>
+              <input type="text" id="rating" name="rating"  placeholder="Enter product rating"
+                #rating="ngModel" class="form-control" [(ngModel)]="productModel.Rating" />
+              <div class="validation-error" *ngIf="rating.invalid && (rating.dirty || rating.touched)">
+                <div *ngIf="rating.hasError('required')" >
+                  Rating is required
+                </div>
+              </div>
+            </div>
+
+          <div class="form-group">
+              <label for="location">Location</label>
+              <input type="text" id="location" name="location" placeholder="Enter product available location"
+                #location="ngModel" class="form-control" [(ngModel)]="productModel.AvailableLocation" />
+              <div class="validation-error" *ngIf="location.invalid && (location.dirty || location.touched)">
+                <div *ngIf="location.hasError('required')">
+                  Product Location is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="radio">
+                <label>
+                    <input type="radio"
+                           [value]="InStock"
+                           [checked]="productModel.StockAvaibility=='InStock'"
+                           id="point1"
+                           (change)="onStockChange('InStock')"
+                           name="StockAvaibility"><span class="form-check-label"> In Stock</span>
+                </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio"
+                               [value]="OutStock"
+                               [checked]="productModel.StockAvaibility == 'OutStock'"
+                               id="point2"
+                               (change)="onStockChange('OutStock')"
+                               name="StockAvaibility"><span class="form-check-label"> Out of Stock</span>
+                    </label>
+                </div>
+            </div>
+        <button class="btn btn-primary" [disabled]="!addEditProductForm.valid" (click)="onSubmit(addEditProductForm)" type="submit">{{title}}</button>
+      </form>
+    </div>
+  </div>
+</div>

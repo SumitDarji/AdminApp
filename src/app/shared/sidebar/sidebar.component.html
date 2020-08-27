@@ -1,0 +1,14 @@
+<ul class="sidebar navbar-nav" [ngClass]="{'toggled': toggled}">
+    <li class="nav-item active">
+        <a class="nav-link" [routerLink]="'/dashboard'" >
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span> Home</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/trash'" >
+            <i class="fas fa-fw fa-trash"></i>
+            <span> Trash</span></a>
+    </li>
+</ul>

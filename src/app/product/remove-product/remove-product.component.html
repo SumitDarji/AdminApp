@@ -1,0 +1,46 @@
+<div>
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="'/dashboard'">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Trash</li>
+  </ol>
+  <div class="card mb-3">
+    <div class="card-header">
+      Removed Product List
+    </div>
+    <div class="card-body">
+        <div class="row m-1" *ngIf="productList.length == 0">
+            <div class="col-md-8">
+              <span class="float-left">No Records found</span>
+            </div>
+        </div>
+      <div class="row" *ngIf="productList.length > 0">
+        <div class="col-xl-3 col-sm-6 mb-3" style="float:left;" *ngFor="let productItem of productList">
+          <div class="card text-white bg-info o-hidden h-100">
+            <div class="card-body p-0">
+              <img [src]="productItem.ImageUrl" width="100%" height="168px"/>
+              <div class="mr-5"></div>
+              <div class="row m-1">
+                <div class="col-md-8">
+                  <span class="float-left">{{productItem.ProductTitle}}</span>
+                </div>
+                <div class="col-md-4 pl-0">
+                  <span class="float-right">
+                    <i class="fas fa-rupee-sign"></i>
+                    {{productItem.Price}}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer p-2 text-white clearfix small z-1"  style="background: #fff;">
+                <button class="btn btn-primary" (click)="removeProduct(productItem.ProductId);" style="float: left;">Remove</button>
+                <button class="btn btn-primary" (click)="restoreProduct(productItem.ProductId);" style="float: right;">Restore</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

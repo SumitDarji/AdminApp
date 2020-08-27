@@ -1,0 +1,63 @@
+<div *ngIf="!isNeedToRender">
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="'/dashboard'">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">View Product</li>
+  </ol>
+
+
+
+  <div class="card card-solid">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <h3 class="d-inline-block d-sm-none">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h3>
+            <div class="col-12">
+              <img [src]="productinfo.ImageUrl" class="product-image" alt="Product Image">
+            </div>
+            <!-- <div class="col-12 product-image-thumbs">
+              <div class="product-image-thumb active"><img src="../../dist/img/prod-1.jpg" alt="Product Image"></div>
+              <div class="product-image-thumb" ><img src="../../dist/img/prod-2.jpg" alt="Product Image"></div>
+              <div class="product-image-thumb" ><img src="../../dist/img/prod-3.jpg" alt="Product Image"></div>
+              <div class="product-image-thumb" ><img src="../../dist/img/prod-4.jpg" alt="Product Image"></div>
+              <div class="product-image-thumb" ><img src="../../dist/img/prod-5.jpg" alt="Product Image"></div>
+            </div> -->
+          </div>
+          <div class="col-12 col-sm-6">
+            <h3 class="my-3">{{productinfo.ProductTitle}}</h3>
+            <p>
+              {{productinfo.Description}}
+            </p>
+
+            <hr>
+            <h4>Rating</h4>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <i class="fas fa-star fa-2x text-green checked" *ngFor="let i of ratingstar"></i>
+                <i class="fas fa-star fa-2x text-green" *ngFor="let i of nonratingstar"></i>
+            </div>
+
+            <div class="bg-gray py-2 px-3 mt-4">
+              <h2 class="mb-0">
+                <i class="fas fa-rupee-sign"></i>
+                  {{productinfo.Price}}
+              </h2>
+            </div>
+            <h4>{{productinfo.StockAvaibility}}</h4>
+
+            <div class="mt-4">
+              <button class="btn btn-primary btn-lg btn-flat" (click)="editProduct();">
+                <i class="fas fa-edit fa-lg mr-2"></i>
+                Update Product
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+</div>
+
+<app-add-edit-product *ngIf="isNeedToRender" [productId]="productId" (closedEvent)="closedEvent($event)">
+</app-add-edit-product>
